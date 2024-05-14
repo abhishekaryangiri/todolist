@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Todo List</title>
+    <style type="text/css">
+    /* Add your custom styles here */
+
+/* Center the todo list */
+.container {
+    text-align: center;
+}
+
+/* Style the input field and button */
+.input-group {
+    margin-bottom: 20px;
+}
+
+/* Style the task list */
+.list-group-item {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+/* Apply strikethrough to completed tasks */
+.completed {
+    text-decoration: line-through;
+}
+    
+    </style>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+</head>
+<body>
+    <div class="container mt-5">
+        <h1 class="text-center mb-4">Todo List</h1>
+        <form action="#" th:action="@{/add}" th:object="${task}" method="post">
+            <div class="input-group mb-3">
+                <input type="text" class="form-control" placeholder="Enter task" th:field="*{description}">
+                <div class="input-group-append">
+                    <button class="btn btn-primary" type="submit">Add Task</button>
+                </div>
+            </div>
+        </form>
+        <ul class="list-group">
+            <li class="list-group-item" th:each="task : ${tasks}">
+                <input type="checkbox" th:checked="${task.completed}" th:disabled="${task.completed}" th:onclick="'location.href=/complete/' + ${task.id}">
+                <span th:class="${task.completed} ? 'completed' : ''" th:text="${task.description}"></span>
+            </li>
+        </ul>
+    </div> 
+</body>
+</html>

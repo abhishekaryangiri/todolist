@@ -1,0 +1,4 @@
+com\todo\todolist\TaskController.class
+com\todo\todolist\Task.class
+com\todo\todolist\TodolistApplication.class
+com\todo\todolist\TaskRepository.class
